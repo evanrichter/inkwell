@@ -1,0 +1,26 @@
+[package]
+name = "inkwell-fuzz"
+version = "0.0.0"
+authors = ["Automatically generated"]
+publish = false
+edition = "2018"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+
+[dependencies.inkwell]
+path = ".."
+features = ["llvm14-0"]
+
+# Prevent this from interfering with workspaces
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "bitcode_parse"
+path = "fuzz_targets/bitcode_parse.rs"
+test = false
+doc = false
